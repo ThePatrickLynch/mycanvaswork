@@ -13,7 +13,7 @@ outFile <- "requestsprocessed"
 
 remove <- c(1,3:5,8:9,16,22,24:27)
 rec.skip <- 0                   # starting point
-rec.chunksize <- 750000    # number of records in each chunk use 1000000 or less for Excel
+rec.chunksize <- 750    # number of records in each chunk use 1000000 or less for Excel
 
 
 
@@ -31,6 +31,7 @@ for (i in 1:2){
   #                        "web_applicaiton_action", "web_application_context_type","real_user_id")
   
   canvasrequest <- canvasrequest[ -c(remove)] # strip unwanted
+  
   
   write.table(canvasrequest, thisoutFile, sep=",", col.names = FALSE, append = TRUE)
   rec.skip <- rec.skip + rec.chunksize + 1
