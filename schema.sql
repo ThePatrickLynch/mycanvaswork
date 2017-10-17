@@ -70,15 +70,6 @@ CREATE TABLE `account_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `account_dim`
---
-
-LOCK TABLES `account_dim` WRITE;
-/*!40000 ALTER TABLE `account_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `account_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `assignment_dim`
 --
 
@@ -118,15 +109,6 @@ CREATE TABLE `assignment_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `assignment_dim`
---
-
-LOCK TABLES `assignment_dim` WRITE;
-/*!40000 ALTER TABLE `assignment_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `assignment_fact`
 --
 
@@ -143,15 +125,6 @@ CREATE TABLE `assignment_fact` (
   `assignment_group_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the assignment group dimension table.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table contains measures related to assignments.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `assignment_fact`
---
-
-LOCK TABLES `assignment_fact` WRITE;
-/*!40000 ALTER TABLE `assignment_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `assignment_group_dim`
@@ -175,15 +148,6 @@ CREATE TABLE `assignment_group_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `assignment_group_dim`
---
-
-LOCK TABLES `assignment_group_dim` WRITE;
-/*!40000 ALTER TABLE `assignment_group_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_group_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `assignment_group_fact`
 --
 
@@ -198,15 +162,6 @@ CREATE TABLE `assignment_group_fact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `assignment_group_fact`
---
-
-LOCK TABLES `assignment_group_fact` WRITE;
-/*!40000 ALTER TABLE `assignment_group_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_group_fact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `assignment_group_rule_dim`
 --
 
@@ -219,15 +174,6 @@ CREATE TABLE `assignment_group_rule_dim` (
   `drop_highest` int(10) unsigned DEFAULT NULL COMMENT 'Number of highest scored assignments which can be dropped form the group. Set to ''0'' when none should be dropped. Defaults to ''0''.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Rules associated with an assignment group.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `assignment_group_rule_dim`
---
-
-LOCK TABLES `assignment_group_rule_dim` WRITE;
-/*!40000 ALTER TABLE `assignment_group_rule_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_group_rule_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `assignment_override_dim`
@@ -263,15 +209,6 @@ CREATE TABLE `assignment_override_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `assignment_override_dim`
---
-
-LOCK TABLES `assignment_override_dim` WRITE;
-/*!40000 ALTER TABLE `assignment_override_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_override_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `assignment_override_fact`
 --
 
@@ -296,15 +233,6 @@ CREATE TABLE `assignment_override_fact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `assignment_override_fact`
---
-
-LOCK TABLES `assignment_override_fact` WRITE;
-/*!40000 ALTER TABLE `assignment_override_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_override_fact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `assignment_override_user_dim`
 --
 
@@ -325,15 +253,6 @@ CREATE TABLE `assignment_override_user_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `assignment_override_user_dim`
---
-
-LOCK TABLES `assignment_override_user_dim` WRITE;
-/*!40000 ALTER TABLE `assignment_override_user_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_override_user_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `assignment_override_user_fact`
 --
 
@@ -352,15 +271,6 @@ CREATE TABLE `assignment_override_user_fact` (
   `user_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the user.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table contains measures related to students for whom an assignment override exists.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `assignment_override_user_fact`
---
-
-LOCK TABLES `assignment_override_user_fact` WRITE;
-/*!40000 ALTER TABLE `assignment_override_user_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_override_user_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `assignment_override_user_rollup_fact`
@@ -390,15 +300,6 @@ CREATE TABLE `assignment_override_user_rollup_fact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `assignment_override_user_rollup_fact`
---
-
-LOCK TABLES `assignment_override_user_rollup_fact` WRITE;
-/*!40000 ALTER TABLE `assignment_override_user_rollup_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_override_user_rollup_fact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `assignment_rule_dim`
 --
 
@@ -410,15 +311,6 @@ CREATE TABLE `assignment_rule_dim` (
   `drop_rule` varchar(256) DEFAULT NULL COMMENT 'Denotes if the assignment can be dropped from the assignment group if the group allows dropping assignments based on certain rules. Is set to ''never_drop'' if the assignment is exempted from dropping, else set to ''can_be_dropped''.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Rules associated with an assignment.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `assignment_rule_dim`
---
-
-LOCK TABLES `assignment_rule_dim` WRITE;
-/*!40000 ALTER TABLE `assignment_rule_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assignment_rule_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `communication_channel_dim`
@@ -442,15 +334,6 @@ CREATE TABLE `communication_channel_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `communication_channel_dim`
---
-
-LOCK TABLES `communication_channel_dim` WRITE;
-/*!40000 ALTER TABLE `communication_channel_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `communication_channel_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `communication_channel_fact`
 --
 
@@ -463,15 +346,6 @@ CREATE TABLE `communication_channel_fact` (
   `bounce_count` int(10) unsigned DEFAULT NULL COMMENT 'Number of permanent bounces since the channel was last reset. If it''s greater than 0, then no email is sent to the channel, until it is either reset by a siteadmin or it is removed and re-added by a user.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for communication channel.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `communication_channel_fact`
---
-
-LOCK TABLES `communication_channel_fact` WRITE;
-/*!40000 ALTER TABLE `communication_channel_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `communication_channel_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `conversation_dim`
@@ -494,15 +368,6 @@ CREATE TABLE `conversation_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `conversation_dim`
---
-
-LOCK TABLES `conversation_dim` WRITE;
-/*!40000 ALTER TABLE `conversation_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `conversation_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `conversation_message_dim`
 --
 
@@ -522,15 +387,6 @@ CREATE TABLE `conversation_message_dim` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for a message in a conversation';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `conversation_message_dim`
---
-
-LOCK TABLES `conversation_message_dim` WRITE;
-/*!40000 ALTER TABLE `conversation_message_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `conversation_message_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `conversation_message_participant_fact`
@@ -555,15 +411,6 @@ CREATE TABLE `conversation_message_participant_fact` (
   `message_line_count` int(10) unsigned DEFAULT NULL COMMENT 'The number of lines in a message.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Fact table for each message in a conversation and each participant';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `conversation_message_participant_fact`
---
-
-LOCK TABLES `conversation_message_participant_fact` WRITE;
-/*!40000 ALTER TABLE `conversation_message_participant_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `conversation_message_participant_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `course_dim`
@@ -591,15 +438,6 @@ CREATE TABLE `course_dim` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='A course in the canvas system';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `course_dim`
---
-
-LOCK TABLES `course_dim` WRITE;
-/*!40000 ALTER TABLE `course_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `course_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `course_section_dim`
@@ -630,15 +468,6 @@ CREATE TABLE `course_section_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `course_section_dim`
---
-
-LOCK TABLES `course_section_dim` WRITE;
-/*!40000 ALTER TABLE `course_section_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `course_section_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `course_ui_canvas_navigation_dim`
 --
 
@@ -656,15 +485,6 @@ CREATE TABLE `course_ui_canvas_navigation_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `course_ui_canvas_navigation_dim`
---
-
-LOCK TABLES `course_ui_canvas_navigation_dim` WRITE;
-/*!40000 ALTER TABLE `course_ui_canvas_navigation_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `course_ui_canvas_navigation_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `course_ui_navigation_item_dim`
 --
 
@@ -679,15 +499,6 @@ CREATE TABLE `course_ui_navigation_item_dim` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for a navigation item';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `course_ui_navigation_item_dim`
---
-
-LOCK TABLES `course_ui_navigation_item_dim` WRITE;
-/*!40000 ALTER TABLE `course_ui_navigation_item_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `course_ui_navigation_item_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `course_ui_navigation_item_fact`
@@ -708,15 +519,6 @@ CREATE TABLE `course_ui_navigation_item_fact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `course_ui_navigation_item_fact`
---
-
-LOCK TABLES `course_ui_navigation_item_fact` WRITE;
-/*!40000 ALTER TABLE `course_ui_navigation_item_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `course_ui_navigation_item_fact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `discussion_entry_dim`
 --
 
@@ -735,15 +537,6 @@ CREATE TABLE `discussion_entry_dim` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for discussion entries. Discussion entries are replies in a discussion topic.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_entry_dim`
---
-
-LOCK TABLES `discussion_entry_dim` WRITE;
-/*!40000 ALTER TABLE `discussion_entry_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_entry_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_entry_fact`
@@ -767,15 +560,6 @@ CREATE TABLE `discussion_entry_fact` (
   `message_length` int(10) unsigned DEFAULT NULL COMMENT 'Length of the message in bytes'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for discussion entries. Discussion entries are replies in a discussion topic.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_entry_fact`
---
-
-LOCK TABLES `discussion_entry_fact` WRITE;
-/*!40000 ALTER TABLE `discussion_entry_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_entry_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_topic_dim`
@@ -805,15 +589,6 @@ CREATE TABLE `discussion_topic_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `discussion_topic_dim`
---
-
-LOCK TABLES `discussion_topic_dim` WRITE;
-/*!40000 ALTER TABLE `discussion_topic_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_topic_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `discussion_topic_fact`
 --
 
@@ -832,15 +607,6 @@ CREATE TABLE `discussion_topic_fact` (
   `message_length` int(10) unsigned DEFAULT NULL COMMENT 'The length of the message in bytes.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for discussion topics/threads.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_topic_fact`
---
-
-LOCK TABLES `discussion_topic_fact` WRITE;
-/*!40000 ALTER TABLE `discussion_topic_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_topic_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `enrollment_dim`
@@ -871,15 +637,6 @@ CREATE TABLE `enrollment_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `enrollment_dim`
---
-
-LOCK TABLES `enrollment_dim` WRITE;
-/*!40000 ALTER TABLE `enrollment_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `enrollment_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `enrollment_fact`
 --
 
@@ -897,15 +654,6 @@ CREATE TABLE `enrollment_fact` (
   `computed_current_score` double DEFAULT NULL COMMENT 'Current score for the enrollment'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for enrollments';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `enrollment_fact`
---
-
-LOCK TABLES `enrollment_fact` WRITE;
-/*!40000 ALTER TABLE `enrollment_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `enrollment_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `enrollment_rollup_dim`
@@ -944,15 +692,6 @@ CREATE TABLE `enrollment_rollup_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `enrollment_rollup_dim`
---
-
-LOCK TABLES `enrollment_rollup_dim` WRITE;
-/*!40000 ALTER TABLE `enrollment_rollup_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `enrollment_rollup_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `enrollment_term_dim`
 --
 
@@ -970,15 +709,6 @@ CREATE TABLE `enrollment_term_dim` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Enrollment term describes the term or semester associated with courses (e.g. Fall 2013)';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `enrollment_term_dim`
---
-
-LOCK TABLES `enrollment_term_dim` WRITE;
-/*!40000 ALTER TABLE `enrollment_term_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `enrollment_term_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `external_tool_activation_dim`
@@ -1007,15 +737,6 @@ CREATE TABLE `external_tool_activation_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `external_tool_activation_dim`
---
-
-LOCK TABLES `external_tool_activation_dim` WRITE;
-/*!40000 ALTER TABLE `external_tool_activation_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `external_tool_activation_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `external_tool_activation_fact`
 --
 
@@ -1031,15 +752,6 @@ CREATE TABLE `external_tool_activation_fact` (
   `course_account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the course''s account if this tool was activated in a course'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Facts and denormalized dimensions for external tool (LTI) activations.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `external_tool_activation_fact`
---
-
-LOCK TABLES `external_tool_activation_fact` WRITE;
-/*!40000 ALTER TABLE `external_tool_activation_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `external_tool_activation_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `file_dim`
@@ -1082,15 +794,6 @@ CREATE TABLE `file_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `file_dim`
---
-
-LOCK TABLES `file_dim` WRITE;
-/*!40000 ALTER TABLE `file_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `file_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `file_fact`
 --
 
@@ -1126,15 +829,6 @@ CREATE TABLE `file_fact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `file_fact`
---
-
-LOCK TABLES `file_fact` WRITE;
-/*!40000 ALTER TABLE `file_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `file_fact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `group_dim`
 --
 
@@ -1164,15 +858,6 @@ CREATE TABLE `group_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `group_dim`
---
-
-LOCK TABLES `group_dim` WRITE;
-/*!40000 ALTER TABLE `group_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `group_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `group_fact`
 --
 
@@ -1194,15 +879,6 @@ CREATE TABLE `group_fact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `group_fact`
---
-
-LOCK TABLES `group_fact` WRITE;
-/*!40000 ALTER TABLE `group_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `group_fact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `group_membership_dim`
 --
 
@@ -1222,15 +898,6 @@ CREATE TABLE `group_membership_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `group_membership_dim`
---
-
-LOCK TABLES `group_membership_dim` WRITE;
-/*!40000 ALTER TABLE `group_membership_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `group_membership_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `group_membership_fact`
 --
 
@@ -1248,205 +915,266 @@ CREATE TABLE `group_membership_fact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for groups.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `module_completion_requirement_dim`
+--
 
+DROP TABLE IF EXISTS `module_completion_requirement_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_completion_requirement_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module completion requirement.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Module that contains the completion requirement.',
+  `module_item_id` bigint(20) DEFAULT NULL COMMENT 'Item that is the subject of the completion requirement.',
+  `requirement_type` enum('must_view','must_mark_done','min_score','must_submit') DEFAULT NULL COMMENT 'Type of completion event that must be achieved to consider item complete.',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for a module completion.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS module_dim;
-CREATE TABLE IF NOT EXISTS module_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module.',
-  `canvas_id` BIGINT COMMENT 'Original primary key for module in the Canvas table.',
-  `course_id` BIGINT COMMENT 'The course that owns this module.',
-  `require_sequential_progress` ENUM('required', 'not_required', 'unspecified') COMMENT 'Should module items be completed sequentially? Valid values are \'required\', \'not_required\', \'unspecified\'.',
-  `workflow_state` ENUM('locked', 'completed', 'unlocked', 'started') COMMENT 'Workflow state for submission lifetime values.',
-  `position` INTEGER UNSIGNED COMMENT 'Position of the module on the modules page.',
-  `name` LONGTEXT COMMENT 'The name of the module in Canvas.',
-  `created_at` DATETIME COMMENT 'Date/Time when the module was created.',
-  `deleted_at` DATETIME COMMENT 'Timestamp when the module was deleted.',
-  `unlock_at` DATETIME COMMENT 'Timestamp when the module will unlock.',
-  `updated_at` DATETIME COMMENT 'Date/Time when the module was last updated.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module.";
+--
+-- Table structure for table `module_completion_requirement_fact`
+--
 
+DROP TABLE IF EXISTS `module_completion_requirement_fact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_completion_requirement_fact` (
+  `module_completion_requirement_id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module completion requirement.',
+  `account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account the module and the module item belong to.',
+  `assignment_id` bigint(20) DEFAULT NULL COMMENT 'Assignment associated with the module item.',
+  `assignment_group_id` bigint(20) DEFAULT NULL COMMENT 'Assignment group associated with the module item.',
+  `course_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the course associated with this module and the module item.',
+  `discussion_topic_id` bigint(20) DEFAULT NULL COMMENT 'Discussion topic associated with the module item.',
+  `discussion_topic_editor_id` bigint(20) DEFAULT NULL COMMENT 'Editor of the discussion topic associated with the module item.',
+  `enrollment_rollup_id` bigint(20) DEFAULT NULL COMMENT 'Enrollment rollup associated with the module item.',
+  `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment term associated with this module and the module item.',
+  `file_id` bigint(20) DEFAULT NULL COMMENT 'File associated with the module item.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Module that contains the completion requirement.',
+  `module_item_id` bigint(20) DEFAULT NULL COMMENT 'Item that is the subject of the completion requirement.',
+  `quiz_id` bigint(20) DEFAULT NULL COMMENT 'Quiz associated with the module item.',
+  `user_id` bigint(20) DEFAULT NULL COMMENT 'User associated with the module item.',
+  `wiki_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the wiki associated with this module and the module item.',
+  `wiki_page_id` bigint(20) DEFAULT NULL COMMENT 'Wiki page associated with the module_item.',
+  `min_score` double DEFAULT NULL COMMENT 'For min_score type requirements, the score that must be attained for completion.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table containing measures related to module completion requirements.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `module_dim`
+--
 
-DROP TABLE IF EXISTS module_fact;
-CREATE TABLE IF NOT EXISTS module_fact (
-  `module_id` BIGINT COMMENT 'Foreign key to assignment dimension.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module belongs to.',
-  `course_id` BIGINT COMMENT 'Foreign key to the course associated with this assignment.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment_term associated with the module_fact course.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with the module_fact course.'
-) COMMENT = "Table containing measures related to modules.";
+DROP TABLE IF EXISTS `module_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module.',
+  `canvas_id` bigint(20) DEFAULT NULL COMMENT 'Original primary key for module in the Canvas table.',
+  `course_id` bigint(20) DEFAULT NULL COMMENT 'The course that owns this module.',
+  `require_sequential_progress` enum('required','not_required','unspecified') DEFAULT NULL COMMENT 'Should module items be completed sequentially? Valid values are ''required'', ''not_required'', ''unspecified''.',
+  `workflow_state` enum('locked','completed','unlocked','started') DEFAULT NULL COMMENT 'Workflow state for submission lifetime values.',
+  `position` int(10) unsigned DEFAULT NULL COMMENT 'Position of the module on the modules page.',
+  `name` longtext COMMENT 'The name of the module in Canvas.',
+  `created_at` datetime DEFAULT NULL COMMENT 'Date/Time when the module was created.',
+  `deleted_at` datetime DEFAULT NULL COMMENT 'Timestamp when the module was deleted.',
+  `unlock_at` datetime DEFAULT NULL COMMENT 'Timestamp when the module will unlock.',
+  `updated_at` datetime DEFAULT NULL COMMENT 'Date/Time when the module was last updated.',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for a module.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `module_fact`
+--
 
-DROP TABLE IF EXISTS module_item_dim;
-CREATE TABLE IF NOT EXISTS module_item_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module_item.',
-  `canvas_id` BIGINT COMMENT 'Original primary key for module_item in the Canvas table.',
-  `assignment_id` BIGINT COMMENT 'Key into assignments table for \'Assignment\' type items.',
-  `course_id` BIGINT COMMENT 'The course that owns this module.',
-  `discussion_topic_id` BIGINT COMMENT 'Key into discussion_topics table for \'Discussion\' type items.',
-  `file_id` BIGINT COMMENT 'Key into file table for \'File\' type items.',
-  `module_id` BIGINT COMMENT 'Parent module for this module item.',
-  `quiz_id` BIGINT COMMENT 'Key into quizzes table for \'Quiz\' type items.',
-  `wiki_page_id` BIGINT COMMENT 'Key into wiki_pages table for \'Page\' type items.',
-  `content_type` ENUM('Assignment', 'Attachment', 'DiscussionTopic', 'ContextExternalTool', 'ContextModuleSubHeader', 'ExternalUrl', 'LearningOutcome', 'Quiz', 'Rubric', 'WikiPage') COMMENT 'The type of content linked to this item. One of: \'Assignment\', \'Attachment\', \'DiscussionTopic\', \'ContextExternalTool\', \'ContextModuleSubHeader\', \'ExternalUrl\', \'LearningOutcome\', \'Quiz\', \'Rubric\' or \'WikiPage\'.',
-  `workflow_state` ENUM('active', 'unpublished', 'deleted') COMMENT 'State of the module item.',
-  `position` INTEGER UNSIGNED COMMENT 'Position of the module item within the module context.',
-  `title` LONGTEXT COMMENT 'Title of the module item.',
-  `url` LONGTEXT COMMENT 'Url for external url type module items.',
-  `created_at` DATETIME COMMENT 'Date/Time when the module item was created.',
-  `updated_at` DATETIME COMMENT 'Date/Time when the module item was last updated.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module item.";
+DROP TABLE IF EXISTS `module_fact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_fact` (
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to assignment dimension.',
+  `account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account the module belongs to.',
+  `course_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the course associated with this assignment.',
+  `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment_term associated with the module_fact course.',
+  `wiki_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the wiki associated with the module_fact course.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table containing measures related to modules.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `module_item_dim`
+--
 
+DROP TABLE IF EXISTS `module_item_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_item_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module_item.',
+  `canvas_id` bigint(20) DEFAULT NULL COMMENT 'Original primary key for module_item in the Canvas table.',
+  `assignment_id` bigint(20) DEFAULT NULL COMMENT 'Key into assignments table for ''Assignment'' type items.',
+  `course_id` bigint(20) DEFAULT NULL COMMENT 'The course that owns this module.',
+  `discussion_topic_id` bigint(20) DEFAULT NULL COMMENT 'Key into discussion_topics table for ''Discussion'' type items.',
+  `file_id` bigint(20) DEFAULT NULL COMMENT 'Key into file table for ''File'' type items.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Parent module for this module item.',
+  `quiz_id` bigint(20) DEFAULT NULL COMMENT 'Key into quizzes table for ''Quiz'' type items.',
+  `wiki_page_id` bigint(20) DEFAULT NULL COMMENT 'Key into wiki_pages table for ''Page'' type items.',
+  `content_type` enum('Assignment','Attachment','DiscussionTopic','ContextExternalTool','ContextModuleSubHeader','ExternalUrl','LearningOutcome','Quiz','Rubric','WikiPage') DEFAULT NULL COMMENT 'The type of content linked to this item. One of: ''Assignment'', ''Attachment'', ''DiscussionTopic'', ''ContextExternalTool'', ''ContextModuleSubHeader'', ''ExternalUrl'', ''LearningOutcome'', ''Quiz'', ''Rubric'' or ''WikiPage''.',
+  `workflow_state` enum('active','unpublished','deleted') DEFAULT NULL COMMENT 'State of the module item.',
+  `position` int(10) unsigned DEFAULT NULL COMMENT 'Position of the module item within the module context.',
+  `title` longtext COMMENT 'Title of the module item.',
+  `url` longtext COMMENT 'Url for external url type module items.',
+  `created_at` datetime DEFAULT NULL COMMENT 'Date/Time when the module item was created.',
+  `updated_at` datetime DEFAULT NULL COMMENT 'Date/Time when the module item was last updated.',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for a module item.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS module_item_fact;
-CREATE TABLE IF NOT EXISTS module_item_fact (
-  `module_item_id` BIGINT COMMENT 'Unique surrogate ID for the module_item.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module belongs to.',
-  `assignment_id` BIGINT COMMENT 'Key into assignments table for \'Assignment\', \'DiscussionTopic\', \'File\', \'Quiz\' type items.',
-  `assignment_group_id` BIGINT COMMENT 'Key into assignment_groups for \'Assignment\', \'File\' type items.',
-  `course_id` BIGINT COMMENT 'The course that owns this module.',
-  `discussion_topic_id` BIGINT COMMENT 'Key into discussion_topics table for \'DiscussionTopic\' type items.',
-  `discussion_topic_editor_id` BIGINT COMMENT 'Key into users table for user who edited \'DiscussionTopic\' type items.',
-  `enrollment_rollup_id` BIGINT COMMENT 'Key into enrollment_rollup table for user associated with \'DiscussionTopic\', \'File\' type items.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment_term associated with the module course.',
-  `file_id` BIGINT COMMENT 'Key into file table for \'File\' type items.',
-  `module_id` BIGINT COMMENT 'Parent module for this module item.',
-  `quiz_id` BIGINT COMMENT 'Key into quizzes table for \'File\', \'Quiz\' type items.',
-  `user_id` BIGINT COMMENT 'Key into users table for \'DiscussionTopic\', \'File\', \'WikiPage\' type items.',
-  `wiki_id` BIGINT COMMENT 'Key into wiki table for \'WikiPage\' type items.',
-  `wiki_page_id` BIGINT COMMENT 'Key into wiki_pages table for \'WikiPage\' type items.'
-) COMMENT = "Table containing measures related to modules_items.";
+--
+-- Table structure for table `module_item_fact`
+--
 
+DROP TABLE IF EXISTS `module_item_fact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_item_fact` (
+  `module_item_id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module_item.',
+  `account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account the module belongs to.',
+  `assignment_id` bigint(20) DEFAULT NULL COMMENT 'Key into assignments table for ''Assignment'', ''DiscussionTopic'', ''File'', ''Quiz'' type items.',
+  `assignment_group_id` bigint(20) DEFAULT NULL COMMENT 'Key into assignment_groups for ''Assignment'', ''File'' type items.',
+  `course_id` bigint(20) DEFAULT NULL COMMENT 'The course that owns this module.',
+  `discussion_topic_id` bigint(20) DEFAULT NULL COMMENT 'Key into discussion_topics table for ''DiscussionTopic'' type items.',
+  `discussion_topic_editor_id` bigint(20) DEFAULT NULL COMMENT 'Key into users table for user who edited ''DiscussionTopic'' type items.',
+  `enrollment_rollup_id` bigint(20) DEFAULT NULL COMMENT 'Key into enrollment_rollup table for user associated with ''DiscussionTopic'', ''File'' type items.',
+  `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment_term associated with the module course.',
+  `file_id` bigint(20) DEFAULT NULL COMMENT 'Key into file table for ''File'' type items.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Parent module for this module item.',
+  `quiz_id` bigint(20) DEFAULT NULL COMMENT 'Key into quizzes table for ''File'', ''Quiz'' type items.',
+  `user_id` bigint(20) DEFAULT NULL COMMENT 'Key into users table for ''DiscussionTopic'', ''File'', ''WikiPage'' type items.',
+  `wiki_id` bigint(20) DEFAULT NULL COMMENT 'Key into wiki table for ''WikiPage'' type items.',
+  `wiki_page_id` bigint(20) DEFAULT NULL COMMENT 'Key into wiki_pages table for ''WikiPage'' type items.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table containing measures related to modules_items.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS module_progression_dim;
-CREATE TABLE IF NOT EXISTS module_progression_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module progression.',
-  `canvas_id` BIGINT COMMENT 'Original primary key for module progression in the Canvas table.',
-  `module_id` BIGINT COMMENT 'Parent module for this module progression.',
-  `user_id` BIGINT COMMENT 'User being tracked in the module progression.',
-  `collapsed` ENUM('collapsed', 'not_collapsed', 'unspecified') COMMENT 'Collapsed state of the module progression.',
-  `is_current` ENUM('current', 'not_current', 'unspecified') COMMENT 'The current state of the module progression.',
-  `workflow_state` ENUM('locked', 'completed', 'unlocked', 'started') COMMENT 'The workflow state of the module progression.',
-  `current_position` INTEGER UNSIGNED COMMENT 'Represents the users current position in the module.',
-  `lock_version` INTEGER UNSIGNED COMMENT 'Lock version of the module progression.',
-  `created_at` DATETIME COMMENT 'Date/Time when the module progression was created.',
-  `completed_at` DATETIME COMMENT 'Date/Time when the module progression was completed.',
-  `evaluated_at` DATETIME COMMENT 'Date/Time when the module progression was evaluated.',
-  `updated_at` DATETIME COMMENT 'Date/Time when the module progression was last updated.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module progression.";
+--
+-- Table structure for table `module_prerequisite_dim`
+--
 
+DROP TABLE IF EXISTS `module_prerequisite_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_prerequisite_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module prerequisite.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Module that contains the prerequisite.',
+  `prerequisite_module_id` bigint(20) DEFAULT NULL COMMENT 'Module that must be completed to fulfill the prerequisite.',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for a module prerequisite.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `module_prerequisite_fact`
+--
 
-DROP TABLE IF EXISTS module_progression_fact;
-CREATE TABLE IF NOT EXISTS module_progression_fact (
-  `module_progression_id` BIGINT COMMENT 'Unique surrogate ID for the module progression.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module belongs to.',
-  `course_id` BIGINT COMMENT 'Foreign key to the course associated with this module.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment_term associated with the module course.',
-  `module_id` BIGINT COMMENT 'Parent module for this module progression.',
-  `user_id` BIGINT COMMENT 'User being tracked in the module progression.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with the module course.'
-) COMMENT = "Table containing measures related to modules_progression.";
+DROP TABLE IF EXISTS `module_prerequisite_fact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_prerequisite_fact` (
+  `module_prerequisite_id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module prerequisite.',
+  `account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account the module belongs to.',
+  `course_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the course associated with this assignment.',
+  `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment_term associated with the module_fact course.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Module that contains the prerequisite.',
+  `prerequisite_module_id` bigint(20) DEFAULT NULL COMMENT 'Module that must be completed to fulfill the prerequisite.',
+  `prerequisite_wiki_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the wiki associated with the module_fact course.',
+  `wiki_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the wiki associated with the module_fact course.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table containing measures related to module prerequisites.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `module_progression_completion_requirement_dim`
+--
 
+DROP TABLE IF EXISTS `module_progression_completion_requirement_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_progression_completion_requirement_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module progression completion requirement.',
+  `module_progression_id` bigint(20) DEFAULT NULL COMMENT 'Module progression referenced by completion requirement.',
+  `module_item_id` bigint(20) DEFAULT NULL COMMENT 'Item that the user has not completed.',
+  `requirement_type` enum('must_view','must_mark_done','min_score','must_submit') DEFAULT NULL COMMENT 'Type of completion event that must be achieved to consider item complete.',
+  `completion_status` enum('complete','incomplete') DEFAULT NULL COMMENT 'Denotes if the completion event is complete or not.',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes tracking a requirement that remains to be completed by a user. Not a comprehensive list, typically just holds requirements that have been attempted by the user.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS module_completion_requirement_dim;
-CREATE TABLE IF NOT EXISTS module_completion_requirement_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module completion requirement.',
-  `module_id` BIGINT COMMENT 'Module that contains the completion requirement.',
-  `module_item_id` BIGINT COMMENT 'Item that is the subject of the completion requirement.',
-  `requirement_type` ENUM('must_view', 'must_mark_done', 'min_score', 'must_submit') COMMENT 'Type of completion event that must be achieved to consider item complete.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module completion.";
+--
+-- Table structure for table `module_progression_completion_requirement_fact`
+--
 
+DROP TABLE IF EXISTS `module_progression_completion_requirement_fact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_progression_completion_requirement_fact` (
+  `module_progression_completion_requirement_id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module progression completion requirement.',
+  `account_id` bigint(20) DEFAULT NULL COMMENT 'Key to the account associated with the module progression and the module item.',
+  `assignment_id` bigint(20) DEFAULT NULL COMMENT 'Key to the assignment associated with the module item.',
+  `assignment_group_id` bigint(20) DEFAULT NULL COMMENT 'Key to the assignment group associated with the module item.',
+  `course_id` bigint(20) DEFAULT NULL COMMENT 'Key to the course associated with the module progression and the module item.',
+  `discussion_topic_id` bigint(20) DEFAULT NULL COMMENT 'Key to the discussion topic associated with the module item.',
+  `discussion_topic_editor_id` bigint(20) DEFAULT NULL COMMENT 'Key to the user editing the discussion topic associated with the module item.',
+  `enrollment_rollup_id` bigint(20) DEFAULT NULL COMMENT 'Key to the enrollment rollup associated with the module item.',
+  `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Key to the enrollment term associated with the module progression and the module item.',
+  `file_id` bigint(20) DEFAULT NULL COMMENT 'Key to the file associated with the module item.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Parent module for this module progression and module item.',
+  `module_item_id` bigint(20) DEFAULT NULL COMMENT 'Item that the user has not completed.',
+  `module_progression_id` bigint(20) DEFAULT NULL COMMENT 'Module progression referenced by the completion requirement.',
+  `quiz_id` bigint(20) DEFAULT NULL COMMENT 'Key to the quiz associated with the module item.',
+  `user_id` bigint(20) DEFAULT NULL COMMENT 'Key to the user associated with the module progression and the module item.',
+  `wiki_id` bigint(20) DEFAULT NULL COMMENT 'Key to the wiki associated with the module progression and the module item.',
+  `wiki_page_id` bigint(20) DEFAULT NULL COMMENT 'Key to the wiki page associated with the module item.',
+  `min_score` double DEFAULT NULL COMMENT 'For min_score type requirements, the score that must be attained for completion.',
+  `score` double DEFAULT NULL COMMENT 'For min_score type requirements, the score that the user has currently achieved.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table containing measures related to module progression completion requirements.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `module_progression_dim`
+--
 
-DROP TABLE IF EXISTS module_completion_requirement_fact;
-CREATE TABLE IF NOT EXISTS module_completion_requirement_fact (
-  `module_completion_requirement_id` BIGINT COMMENT 'Unique surrogate ID for the module completion requirement.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module and the module item belong to.',
-  `assignment_id` BIGINT COMMENT 'Assignment associated with the module item.',
-  `assignment_group_id` BIGINT COMMENT 'Assignment group associated with the module item.',
-  `course_id` BIGINT COMMENT 'Foreign key to the course associated with this module and the module item.',
-  `discussion_topic_id` BIGINT COMMENT 'Discussion topic associated with the module item.',
-  `discussion_topic_editor_id` BIGINT COMMENT 'Editor of the discussion topic associated with the module item.',
-  `enrollment_rollup_id` BIGINT COMMENT 'Enrollment rollup associated with the module item.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment term associated with this module and the module item.',
-  `file_id` BIGINT COMMENT 'File associated with the module item.',
-  `module_id` BIGINT COMMENT 'Module that contains the completion requirement.',
-  `module_item_id` BIGINT COMMENT 'Item that is the subject of the completion requirement.',
-  `quiz_id` BIGINT COMMENT 'Quiz associated with the module item.',
-  `user_id` BIGINT COMMENT 'User associated with the module item.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with this module and the module item.',
-  `wiki_page_id` BIGINT COMMENT 'Wiki page associated with the module_item.',
-  `min_score` DOUBLE COMMENT 'For min_score type requirements, the score that must be attained for completion.'
-) COMMENT = "Table containing measures related to module completion requirements.";
+DROP TABLE IF EXISTS `module_progression_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_progression_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module progression.',
+  `canvas_id` bigint(20) DEFAULT NULL COMMENT 'Original primary key for module progression in the Canvas table.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Parent module for this module progression.',
+  `user_id` bigint(20) DEFAULT NULL COMMENT 'User being tracked in the module progression.',
+  `collapsed` enum('collapsed','not_collapsed','unspecified') DEFAULT NULL COMMENT 'Collapsed state of the module progression.',
+  `is_current` enum('current','not_current','unspecified') DEFAULT NULL COMMENT 'The current state of the module progression.',
+  `workflow_state` enum('locked','completed','unlocked','started') DEFAULT NULL COMMENT 'The workflow state of the module progression.',
+  `current_position` int(10) unsigned DEFAULT NULL COMMENT 'Represents the users current position in the module.',
+  `lock_version` int(10) unsigned DEFAULT NULL COMMENT 'Lock version of the module progression.',
+  `created_at` datetime DEFAULT NULL COMMENT 'Date/Time when the module progression was created.',
+  `completed_at` datetime DEFAULT NULL COMMENT 'Date/Time when the module progression was completed.',
+  `evaluated_at` datetime DEFAULT NULL COMMENT 'Date/Time when the module progression was evaluated.',
+  `updated_at` datetime DEFAULT NULL COMMENT 'Date/Time when the module progression was last updated.',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for a module progression.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `module_progression_fact`
+--
 
-
-DROP TABLE IF EXISTS module_prerequisite_dim;
-CREATE TABLE IF NOT EXISTS module_prerequisite_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module prerequisite.',
-  `module_id` BIGINT COMMENT 'Module that contains the prerequisite.',
-  `prerequisite_module_id` BIGINT COMMENT 'Module that must be completed to fulfill the prerequisite.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module prerequisite.";
-
-
-
-DROP TABLE IF EXISTS module_prerequisite_fact;
-CREATE TABLE IF NOT EXISTS module_prerequisite_fact (
-  `module_prerequisite_id` BIGINT COMMENT 'Unique surrogate ID for the module prerequisite.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module belongs to.',
-  `course_id` BIGINT COMMENT 'Foreign key to the course associated with this assignment.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment_term associated with the module_fact course.',
-  `module_id` BIGINT COMMENT 'Module that contains the prerequisite.',
-  `prerequisite_module_id` BIGINT COMMENT 'Module that must be completed to fulfill the prerequisite.',
-  `prerequisite_wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with the module_fact course.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with the module_fact course.'
-) COMMENT = "Table containing measures related to module prerequisites.";
-
-
-
-DROP TABLE IF EXISTS module_progression_completion_requirement_dim;
-CREATE TABLE IF NOT EXISTS module_progression_completion_requirement_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module progression completion requirement.',
-  `module_progression_id` BIGINT COMMENT 'Module progression referenced by completion requirement.',
-  `module_item_id` BIGINT COMMENT 'Item that the user has not completed.',
-  `requirement_type` ENUM('must_view', 'must_mark_done', 'min_score', 'must_submit') COMMENT 'Type of completion event that must be achieved to consider item complete.',
-  `completion_status` ENUM('complete', 'incomplete') COMMENT 'Denotes if the completion event is complete or not.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes tracking a requirement that remains to be completed by a user. Not a comprehensive list, typically just holds requirements that have been attempted by the user.";
-
-
-
-DROP TABLE IF EXISTS module_progression_completion_requirement_fact;
-CREATE TABLE IF NOT EXISTS module_progression_completion_requirement_fact (
-  `module_progression_completion_requirement_id` BIGINT COMMENT 'Unique surrogate ID for the module progression completion requirement.',
-  `account_id` BIGINT COMMENT 'Key to the account associated with the module progression and the module item.',
-  `assignment_id` BIGINT COMMENT 'Key to the assignment associated with the module item.',
-  `assignment_group_id` BIGINT COMMENT 'Key to the assignment group associated with the module item.',
-  `course_id` BIGINT COMMENT 'Key to the course associated with the module progression and the module item.',
-  `discussion_topic_id` BIGINT COMMENT 'Key to the discussion topic associated with the module item.',
-  `discussion_topic_editor_id` BIGINT COMMENT 'Key to the user editing the discussion topic associated with the module item.',
-  `enrollment_rollup_id` BIGINT COMMENT 'Key to the enrollment rollup associated with the module item.',
-  `enrollment_term_id` BIGINT COMMENT 'Key to the enrollment term associated with the module progression and the module item.',
-  `file_id` BIGINT COMMENT 'Key to the file associated with the module item.',
-  `module_id` BIGINT COMMENT 'Parent module for this module progression and module item.',
-  `module_item_id` BIGINT COMMENT 'Item that the user has not completed.',
-  `module_progression_id` BIGINT COMMENT 'Module progression referenced by the completion requirement.',
-  `quiz_id` BIGINT COMMENT 'Key to the quiz associated with the module item.',
-  `user_id` BIGINT COMMENT 'Key to the user associated with the module progression and the module item.',
-  `wiki_id` BIGINT COMMENT 'Key to the wiki associated with the module progression and the module item.',
-  `wiki_page_id` BIGINT COMMENT 'Key to the wiki page associated with the module item.',
-  `min_score` DOUBLE COMMENT 'For min_score type requirements, the score that must be attained for completion.',
-  `score` DOUBLE COMMENT 'For min_score type requirements, the score that the user has currently achieved.'
-) COMMENT = "Table containing measures related to module progression completion requirements.";
-
+DROP TABLE IF EXISTS `module_progression_fact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `module_progression_fact` (
+  `module_progression_id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate ID for the module progression.',
+  `account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account the module belongs to.',
+  `course_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the course associated with this module.',
+  `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment_term associated with the module course.',
+  `module_id` bigint(20) DEFAULT NULL COMMENT 'Parent module for this module progression.',
+  `user_id` bigint(20) DEFAULT NULL COMMENT 'User being tracked in the module progression.',
+  `wiki_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the wiki associated with the module course.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Table containing measures related to modules_progression.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `pseudonym_dim`
@@ -1480,15 +1208,6 @@ CREATE TABLE `pseudonym_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pseudonym_dim`
---
-
-LOCK TABLES `pseudonym_dim` WRITE;
-/*!40000 ALTER TABLE `pseudonym_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pseudonym_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `pseudonym_fact`
 --
 
@@ -1503,15 +1222,6 @@ CREATE TABLE `pseudonym_fact` (
   `failed_login_count` int(10) unsigned DEFAULT NULL COMMENT 'Number of times failed login attempt to this pseudonym'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pseudonym_fact`
---
-
-LOCK TABLES `pseudonym_fact` WRITE;
-/*!40000 ALTER TABLE `pseudonym_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pseudonym_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `quiz_dim`
@@ -1557,15 +1267,6 @@ CREATE TABLE `quiz_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `quiz_dim`
---
-
-LOCK TABLES `quiz_dim` WRITE;
-/*!40000 ALTER TABLE `quiz_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `quiz_fact`
 --
 
@@ -1585,15 +1286,6 @@ CREATE TABLE `quiz_fact` (
   `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to enrollment term the quiz belongs to.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for quiz.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quiz_fact`
---
-
-LOCK TABLES `quiz_fact` WRITE;
-/*!40000 ALTER TABLE `quiz_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `quiz_question_answer_dim`
@@ -1624,15 +1316,6 @@ CREATE TABLE `quiz_question_answer_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `quiz_question_answer_dim`
---
-
-LOCK TABLES `quiz_question_answer_dim` WRITE;
-/*!40000 ALTER TABLE `quiz_question_answer_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_question_answer_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `quiz_question_answer_fact`
 --
 
@@ -1656,15 +1339,6 @@ CREATE TABLE `quiz_question_answer_fact` (
   `ending_range` double DEFAULT NULL COMMENT '(Used in ''numerical_question'' with answer type ''range_answer'', set to ''NULL'' otherwise) End of the allowed range (inclusive).'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for answers related to a quiz question.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quiz_question_answer_fact`
---
-
-LOCK TABLES `quiz_question_answer_fact` WRITE;
-/*!40000 ALTER TABLE `quiz_question_answer_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_question_answer_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `quiz_question_dim`
@@ -1696,15 +1370,6 @@ CREATE TABLE `quiz_question_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `quiz_question_dim`
---
-
-LOCK TABLES `quiz_question_dim` WRITE;
-/*!40000 ALTER TABLE `quiz_question_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_question_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `quiz_question_fact`
 --
 
@@ -1723,15 +1388,6 @@ CREATE TABLE `quiz_question_fact` (
   `points_possible` double DEFAULT NULL COMMENT 'Maximum number of points that can be awarded for answering the question correctly.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures of a question associated with a quiz.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quiz_question_fact`
---
-
-LOCK TABLES `quiz_question_fact` WRITE;
-/*!40000 ALTER TABLE `quiz_question_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_question_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `quiz_question_group_dim`
@@ -1753,15 +1409,6 @@ CREATE TABLE `quiz_question_group_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `quiz_question_group_dim`
---
-
-LOCK TABLES `quiz_question_group_dim` WRITE;
-/*!40000 ALTER TABLE `quiz_question_group_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_question_group_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `quiz_question_group_fact`
 --
 
@@ -1779,15 +1426,6 @@ CREATE TABLE `quiz_question_group_fact` (
   `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment term of the course this group belongs to.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures related to quiz groups.';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quiz_question_group_fact`
---
-
-LOCK TABLES `quiz_question_group_fact` WRITE;
-/*!40000 ALTER TABLE `quiz_question_group_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_question_group_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `quiz_submission_dim`
@@ -1816,15 +1454,6 @@ CREATE TABLE `quiz_submission_dim` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for the last submitted quiz';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quiz_submission_dim`
---
-
-LOCK TABLES `quiz_submission_dim` WRITE;
-/*!40000 ALTER TABLE `quiz_submission_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_submission_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `quiz_submission_fact`
@@ -1857,15 +1486,6 @@ CREATE TABLE `quiz_submission_fact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `quiz_submission_fact`
---
-
-LOCK TABLES `quiz_submission_fact` WRITE;
-/*!40000 ALTER TABLE `quiz_submission_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_submission_fact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `quiz_submission_historical_dim`
 --
 
@@ -1896,15 +1516,6 @@ CREATE TABLE `quiz_submission_historical_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `quiz_submission_historical_dim`
---
-
-LOCK TABLES `quiz_submission_historical_dim` WRITE;
-/*!40000 ALTER TABLE `quiz_submission_historical_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quiz_submission_historical_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `quiz_submission_historical_fact`
 --
 
@@ -1933,7 +1544,6 @@ CREATE TABLE `quiz_submission_historical_fact` (
   `time_taken` int(10) unsigned DEFAULT NULL COMMENT 'Time taken, in seconds, to finish the quiz.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for the all submitted quizzes';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `requests`
@@ -1973,7 +1583,6 @@ CREATE TABLE `requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Pageview requests. Disclaimer: The data in the requests table is a ''best effort'' attempt, and is not guaranteed to be complete or wholly accurate. This data is meant to be used for rollups and analysis in the aggregate, _not_ in isolation for auditing, or other high-stakes analysis involving examining single users or small samples. As this data is generated from the Canvas logs files, not a transactional database, there are many places along the way data can be lost and/or duplicated (though uncommon). Additionally, given the size of this data, our processes are often done on monthly cycles for many parts of the requests tables, so as errors occur they can only be rectified monthly.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
 --
 -- Table structure for table `role_dim`
 --
@@ -1996,35 +1605,24 @@ CREATE TABLE `role_dim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Give the possible roles for an enrolled user';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `score_dim`
+--
 
-DROP TABLE IF EXISTS score_dim;
-CREATE TABLE IF NOT EXISTS score_dim (
-  `id` BIGINT COMMENT 'Unique surrogate identifier for the score.',
-  `canvas_id` BIGINT COMMENT 'Primary key for the score.',
-  `enrollment_id` BIGINT COMMENT 'Foreign key to the Enrollment table.',
-  `grading_period_id` BIGINT COMMENT 'Foreign key to the grading period group table.',
-  `created_at` DATETIME COMMENT 'Timestamp when record was created.',
-  `updated_at` DATETIME COMMENT 'Timestamp when record was last updated.',
-  `workflow_state` VARCHAR(256) COMMENT 'workflow state for the score. Possibe values are \'active\', \'deleted\'',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for scores. You can think of a score as synonymous with a cell inside the gradebook.";
-
-
-DROP TABLE IF EXISTS score_fact;
-CREATE TABLE IF NOT EXISTS score_fact (
-  `score_id` BIGINT COMMENT 'Unique surrogate identifier for the score.',
-  `canvas_id` BIGINT COMMENT 'Primary key for the score.',
-  `account_id` BIGINT COMMENT 'Foreign key to the Account group table.',
-  `course_id` BIGINT COMMENT 'Foreign key to the Course group table.',
-  `enrollment_id` BIGINT COMMENT 'Foreign key to the Enrollment table.',
-  `grading_period_id` BIGINT COMMENT 'Foreign key to the grading period group table.',
-  `grading_period_group_id` BIGINT COMMENT 'Foreign key to the grading period group table.',
-  `grading_period_group_account_id` BIGINT COMMENT 'One hop ID to the Account table for the grading period group table.',
-  `current_score` DOUBLE COMMENT 'Current score.',
-  `final_score` DOUBLE COMMENT 'Final score.'
-) COMMENT = "Table containing measures for scores within Canvas gradebook.";
-DROP TABLE IF EXISTS score_dim;
-
+DROP TABLE IF EXISTS `score_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `score_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique surrogate identifier for the score.',
+  `canvas_id` bigint(20) DEFAULT NULL COMMENT 'Primary key for the score.',
+  `enrollment_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the Enrollment table.',
+  `grading_period_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the grading period group table.',
+  `created_at` datetime DEFAULT NULL COMMENT 'Timestamp when record was created.',
+  `updated_at` datetime DEFAULT NULL COMMENT 'Timestamp when record was last updated.',
+  `workflow_state` varchar(256) DEFAULT NULL COMMENT 'workflow state for the score. Possibe values are ''active'', ''deleted''',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for scores. You can think of a score as synonymous with a cell inside the gradebook.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `submission_comment_dim`
@@ -2053,15 +1651,6 @@ CREATE TABLE `submission_comment_dim` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `submission_comment_dim`
---
-
-LOCK TABLES `submission_comment_dim` WRITE;
-/*!40000 ALTER TABLE `submission_comment_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `submission_comment_dim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `submission_comment_fact`
 --
 
@@ -2085,15 +1674,6 @@ CREATE TABLE `submission_comment_fact` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `submission_comment_fact`
---
-
-LOCK TABLES `submission_comment_fact` WRITE;
-/*!40000 ALTER TABLE `submission_comment_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `submission_comment_fact` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `submission_comment_participant_dim`
 --
 
@@ -2109,15 +1689,6 @@ CREATE TABLE `submission_comment_participant_dim` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `submission_comment_participant_dim`
---
-
-LOCK TABLES `submission_comment_participant_dim` WRITE;
-/*!40000 ALTER TABLE `submission_comment_participant_dim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `submission_comment_participant_dim` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `submission_comment_participant_fact`
@@ -2138,15 +1709,6 @@ CREATE TABLE `submission_comment_participant_fact` (
   `enrollment_rollup_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment roll-up dimension table'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `submission_comment_participant_fact`
---
-
-LOCK TABLES `submission_comment_participant_fact` WRITE;
-/*!40000 ALTER TABLE `submission_comment_participant_fact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `submission_comment_participant_fact` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `submission_dim`
@@ -2186,7 +1748,6 @@ CREATE TABLE `submission_dim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='This table records the latest submission for an assignment.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
 --
 -- Table structure for table `submission_fact`
 --
@@ -2216,7 +1777,6 @@ CREATE TABLE `submission_fact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
 --
 -- Table structure for table `user_dim`
 --
@@ -2245,77 +1805,93 @@ CREATE TABLE `user_dim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for users';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `wiki_dim`
+--
 
-DROP TABLE IF EXISTS wiki_dim;
-CREATE TABLE IF NOT EXISTS wiki_dim (
-  `id` BIGINT COMMENT 'Unique id for the wiki.',
-  `canvas_id` BIGINT COMMENT 'Primary key to the wikis table in canvas.',
-  `parent_type` VARCHAR(256) COMMENT 'Type of Parent the wiki belongs to. For example, Groups or Courses.',
-  `title` LONGTEXT COMMENT 'Title for the wiki.',
-  `created_at` DATETIME COMMENT 'Timestamp when the wiki was first saved in the system.',
-  `updated_at` DATETIME COMMENT 'Timestamp when the wiki was last updated in the system.',
-  `front_page_url` LONGTEXT COMMENT 'URL of the front page of the wiki.',
-  `has_no_front_page` ENUM('false','true') COMMENT 'True if the wiki does not have a front page or is set to NULL.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for wiki in canvas.";
+DROP TABLE IF EXISTS `wiki_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wiki_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique id for the wiki.',
+  `canvas_id` bigint(20) DEFAULT NULL COMMENT 'Primary key to the wikis table in canvas.',
+  `parent_type` varchar(256) DEFAULT NULL COMMENT 'Type of Parent the wiki belongs to. For example, Groups or Courses.',
+  `title` longtext COMMENT 'Title for the wiki.',
+  `created_at` datetime DEFAULT NULL COMMENT 'Timestamp when the wiki was first saved in the system.',
+  `updated_at` datetime DEFAULT NULL COMMENT 'Timestamp when the wiki was last updated in the system.',
+  `front_page_url` longtext COMMENT 'URL of the front page of the wiki.',
+  `has_no_front_page` enum('false','true') DEFAULT NULL COMMENT 'True if the wiki does not have a front page or is set to NULL.',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for wiki in canvas.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `wiki_fact`
+--
 
+DROP TABLE IF EXISTS `wiki_fact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wiki_fact` (
+  `wiki_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the wiki dimension.',
+  `parent_course_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the courses table if the wiki is associated with a Course. Otherwise this field is set to NULL.',
+  `parent_group_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the groups table if the wiki is associated with a Group. Otherwise this field is set to NULL.',
+  `parent_course_account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account dimension for the account associated with the wiki''s course. If the wiki is not associated to a Course, this field is set to NULL.',
+  `parent_group_account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account dimension for the account associated with the wiki''s group. If the wiki is not associated to a Group, this field is set to NULL.',
+  `account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the accounts table that this wiki belongs to. Helpful for directly finding the account associated with the wiki, irrespective of whether it belongs to a Course or a Group.',
+  `root_account_id` bigint(20) DEFAULT NULL COMMENT 'Root account Id of the account the wiki belongs to. Foreign key to the accounts table.',
+  `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment term table of the course this wiki is associated with. Otherwise this is set to NULL.',
+  `group_category_id` bigint(20) DEFAULT NULL COMMENT '(Not implemented) Foreign key to the group categories table of the group this wiki is associated with. Otherwise this is set to NULL.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for wikis.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS wiki_fact;
-CREATE TABLE IF NOT EXISTS wiki_fact (
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki dimension.',
-  `parent_course_id` BIGINT COMMENT 'Foreign key to the courses table if the wiki is associated with a Course. Otherwise this field is set to NULL.',
-  `parent_group_id` BIGINT COMMENT 'Foreign key to the groups table if the wiki is associated with a Group. Otherwise this field is set to NULL.',
-  `parent_course_account_id` BIGINT COMMENT 'Foreign key to the account dimension for the account associated with the wiki\'s course. If the wiki is not associated to a Course, this field is set to NULL.',
-  `parent_group_account_id` BIGINT COMMENT 'Foreign key to the account dimension for the account associated with the wiki\'s group. If the wiki is not associated to a Group, this field is set to NULL.',
-  `account_id` BIGINT COMMENT 'Foreign key to the accounts table that this wiki belongs to. Helpful for directly finding the account associated with the wiki, irrespective of whether it belongs to a Course or a Group.',
-  `root_account_id` BIGINT COMMENT 'Root account Id of the account the wiki belongs to. Foreign key to the accounts table.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment term table of the course this wiki is associated with. Otherwise this is set to NULL.',
-  `group_category_id` BIGINT COMMENT '(Not implemented) Foreign key to the group categories table of the group this wiki is associated with. Otherwise this is set to NULL.'
-) COMMENT = "Measures for wikis.";
+--
+-- Table structure for table `wiki_page_dim`
+--
 
+DROP TABLE IF EXISTS `wiki_page_dim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wiki_page_dim` (
+  `id` bigint(20) DEFAULT NULL COMMENT 'Unique id for the wiki pages.',
+  `canvas_id` bigint(20) DEFAULT NULL COMMENT 'Primary key for the wiki pages table.',
+  `title` varchar(256) DEFAULT NULL COMMENT 'Title of the wiki page.',
+  `body` longtext COMMENT 'Body of the wiki page. Redshift will only load the first 256 bytes of the body.',
+  `workflow_state` varchar(256) DEFAULT NULL COMMENT 'Current state the wiki is in. For Example, active, unpublished, deleted.',
+  `created_at` datetime DEFAULT NULL COMMENT 'Timestamp when the wiki page was created in the system.',
+  `updated_at` datetime DEFAULT NULL COMMENT 'Timestamp when the wiki page was last updated in the system.',
+  `url` longtext COMMENT 'URL for the wiki page.',
+  `protected_editing` enum('false','true') DEFAULT NULL COMMENT 'Editing protection for the wiki page. It is false by default.',
+  `editing_roles` varchar(256) DEFAULT NULL COMMENT 'Users or roles who can edit a wiki page.',
+  `revised_at` datetime DEFAULT NULL COMMENT 'Timestamp the wiki page was last revised in the system.',
+  `could_be_locked` enum('false','true') DEFAULT NULL COMMENT 'True if the wiki page can be locked. This prevents it from being visible to others until ready.',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for wiki pages in canvas.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Table structure for table `wiki_page_fact`
+--
 
-DROP TABLE IF EXISTS wiki_page_dim;
-CREATE TABLE IF NOT EXISTS wiki_page_dim (
-  `id` BIGINT COMMENT 'Unique id for the wiki pages.',
-  `canvas_id` BIGINT COMMENT 'Primary key for the wiki pages table.',
-  `title` VARCHAR(256) COMMENT 'Title of the wiki page.',
-  `body` LONGTEXT COMMENT 'Body of the wiki page. Redshift will only load the first 256 bytes of the body.',
-  `workflow_state` VARCHAR(256) COMMENT 'Current state the wiki is in. For Example, active, unpublished, deleted.',
-  `created_at` DATETIME COMMENT 'Timestamp when the wiki page was created in the system.',
-  `updated_at` DATETIME COMMENT 'Timestamp when the wiki page was last updated in the system.',
-  `url` LONGTEXT COMMENT 'URL for the wiki page.',
-  `protected_editing` ENUM('false','true') COMMENT 'Editing protection for the wiki page. It is false by default.',
-  `editing_roles` VARCHAR(256) COMMENT 'Users or roles who can edit a wiki page.',
-  `revised_at` DATETIME COMMENT 'Timestamp the wiki page was last revised in the system.',
-  `could_be_locked` ENUM('false','true') COMMENT 'True if the wiki page can be locked. This prevents it from being visible to others until ready.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for wiki pages in canvas.";
-
-
-
-DROP TABLE IF EXISTS wiki_page_fact;
-CREATE TABLE IF NOT EXISTS wiki_page_fact (
-  `wiki_page_id` BIGINT COMMENT 'Foreign key to the wiki pages dimension.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wikis dimension.',
-  `parent_course_id` BIGINT COMMENT 'Foreign key to the courses table if the wiki that owns the wiki page is associated with a Course. Otherwise this field is set to NULL.',
-  `parent_group_id` BIGINT COMMENT 'Foreign key to the groups table if the wiki that owns the wiki page is associated with a Group. Otherwise this field is set to NULL.',
-  `parent_course_account_id` BIGINT COMMENT 'Foreign key to the account dimension for the account associated with the wiki page\'s course. If the wiki page is not associated to a Course, this field is set to NULL.',
-  `parent_group_account_id` BIGINT COMMENT 'Foreign key to the account dimension for the account associated with the wiki page\'s group. If the wiki page is not associated to a Group, this field is set to NULL.',
-  `user_id` BIGINT COMMENT 'Foreign key to the user table.',
-  `account_id` BIGINT COMMENT 'Foreign key to the accounts table that this wiki page belongs to. Helpful for directly finding the account associated with the wiki page, irrespective of whether it belongs to a Course or a Group.',
-  `root_account_id` BIGINT COMMENT 'Root account Id of the account the wiki belongs to. Foreign key to the accounts table.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment term table of the course this wiki page is associated with. Otherwise this is set to NULL.',
-  `group_category_id` BIGINT COMMENT '(Not implemented) Foreign key to the group categories table of the group this wiki page is associated with. Otherwise this is set to NULL.',
-  `wiki_page_comments_count` INTEGER UNSIGNED COMMENT '(Deprecated) No longer used in Canvas.',
-  `view_count` INTEGER UNSIGNED COMMENT 'Number of views per wiki page.'
-) COMMENT = "Measures for wiki pages.";
-
-
-
-
-
+DROP TABLE IF EXISTS `wiki_page_fact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wiki_page_fact` (
+  `wiki_page_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the wiki pages dimension.',
+  `wiki_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the wikis dimension.',
+  `parent_course_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the courses table if the wiki that owns the wiki page is associated with a Course. Otherwise this field is set to NULL.',
+  `parent_group_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the groups table if the wiki that owns the wiki page is associated with a Group. Otherwise this field is set to NULL.',
+  `parent_course_account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account dimension for the account associated with the wiki page''s course. If the wiki page is not associated to a Course, this field is set to NULL.',
+  `parent_group_account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the account dimension for the account associated with the wiki page''s group. If the wiki page is not associated to a Group, this field is set to NULL.',
+  `user_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the user table.',
+  `account_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the accounts table that this wiki page belongs to. Helpful for directly finding the account associated with the wiki page, irrespective of whether it belongs to a Course or a Group.',
+  `root_account_id` bigint(20) DEFAULT NULL COMMENT 'Root account Id of the account the wiki belongs to. Foreign key to the accounts table.',
+  `enrollment_term_id` bigint(20) DEFAULT NULL COMMENT 'Foreign key to the enrollment term table of the course this wiki page is associated with. Otherwise this is set to NULL.',
+  `group_category_id` bigint(20) DEFAULT NULL COMMENT '(Not implemented) Foreign key to the group categories table of the group this wiki page is associated with. Otherwise this is set to NULL.',
+  `wiki_page_comments_count` int(10) unsigned DEFAULT NULL COMMENT '(Deprecated) No longer used in Canvas.',
+  `view_count` int(10) unsigned DEFAULT NULL COMMENT 'Number of views per wiki page.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for wiki pages.';
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2326,4 +1902,4 @@ CREATE TABLE IF NOT EXISTS wiki_page_fact (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-05 17:01:43
+-- Dump completed on 2017-10-17 15:28:46
