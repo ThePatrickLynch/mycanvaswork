@@ -1248,205 +1248,14 @@ CREATE TABLE `group_membership_fact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for groups.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `group_membership_fact`
+--
 
-
-DROP TABLE IF EXISTS module_dim;
-CREATE TABLE IF NOT EXISTS module_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module.',
-  `canvas_id` BIGINT COMMENT 'Original primary key for module in the Canvas table.',
-  `course_id` BIGINT COMMENT 'The course that owns this module.',
-  `require_sequential_progress` ENUM('required', 'not_required', 'unspecified') COMMENT 'Should module items be completed sequentially? Valid values are \'required\', \'not_required\', \'unspecified\'.',
-  `workflow_state` ENUM('locked', 'completed', 'unlocked', 'started') COMMENT 'Workflow state for submission lifetime values.',
-  `position` INTEGER UNSIGNED COMMENT 'Position of the module on the modules page.',
-  `name` LONGTEXT COMMENT 'The name of the module in Canvas.',
-  `created_at` DATETIME COMMENT 'Date/Time when the module was created.',
-  `deleted_at` DATETIME COMMENT 'Timestamp when the module was deleted.',
-  `unlock_at` DATETIME COMMENT 'Timestamp when the module will unlock.',
-  `updated_at` DATETIME COMMENT 'Date/Time when the module was last updated.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module.";
-
-
-
-DROP TABLE IF EXISTS module_fact;
-CREATE TABLE IF NOT EXISTS module_fact (
-  `module_id` BIGINT COMMENT 'Foreign key to assignment dimension.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module belongs to.',
-  `course_id` BIGINT COMMENT 'Foreign key to the course associated with this assignment.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment_term associated with the module_fact course.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with the module_fact course.'
-) COMMENT = "Table containing measures related to modules.";
-
-
-DROP TABLE IF EXISTS module_item_dim;
-CREATE TABLE IF NOT EXISTS module_item_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module_item.',
-  `canvas_id` BIGINT COMMENT 'Original primary key for module_item in the Canvas table.',
-  `assignment_id` BIGINT COMMENT 'Key into assignments table for \'Assignment\' type items.',
-  `course_id` BIGINT COMMENT 'The course that owns this module.',
-  `discussion_topic_id` BIGINT COMMENT 'Key into discussion_topics table for \'Discussion\' type items.',
-  `file_id` BIGINT COMMENT 'Key into file table for \'File\' type items.',
-  `module_id` BIGINT COMMENT 'Parent module for this module item.',
-  `quiz_id` BIGINT COMMENT 'Key into quizzes table for \'Quiz\' type items.',
-  `wiki_page_id` BIGINT COMMENT 'Key into wiki_pages table for \'Page\' type items.',
-  `content_type` ENUM('Assignment', 'Attachment', 'DiscussionTopic', 'ContextExternalTool', 'ContextModuleSubHeader', 'ExternalUrl', 'LearningOutcome', 'Quiz', 'Rubric', 'WikiPage') COMMENT 'The type of content linked to this item. One of: \'Assignment\', \'Attachment\', \'DiscussionTopic\', \'ContextExternalTool\', \'ContextModuleSubHeader\', \'ExternalUrl\', \'LearningOutcome\', \'Quiz\', \'Rubric\' or \'WikiPage\'.',
-  `workflow_state` ENUM('active', 'unpublished', 'deleted') COMMENT 'State of the module item.',
-  `position` INTEGER UNSIGNED COMMENT 'Position of the module item within the module context.',
-  `title` LONGTEXT COMMENT 'Title of the module item.',
-  `url` LONGTEXT COMMENT 'Url for external url type module items.',
-  `created_at` DATETIME COMMENT 'Date/Time when the module item was created.',
-  `updated_at` DATETIME COMMENT 'Date/Time when the module item was last updated.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module item.";
-
-
-
-DROP TABLE IF EXISTS module_item_fact;
-CREATE TABLE IF NOT EXISTS module_item_fact (
-  `module_item_id` BIGINT COMMENT 'Unique surrogate ID for the module_item.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module belongs to.',
-  `assignment_id` BIGINT COMMENT 'Key into assignments table for \'Assignment\', \'DiscussionTopic\', \'File\', \'Quiz\' type items.',
-  `assignment_group_id` BIGINT COMMENT 'Key into assignment_groups for \'Assignment\', \'File\' type items.',
-  `course_id` BIGINT COMMENT 'The course that owns this module.',
-  `discussion_topic_id` BIGINT COMMENT 'Key into discussion_topics table for \'DiscussionTopic\' type items.',
-  `discussion_topic_editor_id` BIGINT COMMENT 'Key into users table for user who edited \'DiscussionTopic\' type items.',
-  `enrollment_rollup_id` BIGINT COMMENT 'Key into enrollment_rollup table for user associated with \'DiscussionTopic\', \'File\' type items.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment_term associated with the module course.',
-  `file_id` BIGINT COMMENT 'Key into file table for \'File\' type items.',
-  `module_id` BIGINT COMMENT 'Parent module for this module item.',
-  `quiz_id` BIGINT COMMENT 'Key into quizzes table for \'File\', \'Quiz\' type items.',
-  `user_id` BIGINT COMMENT 'Key into users table for \'DiscussionTopic\', \'File\', \'WikiPage\' type items.',
-  `wiki_id` BIGINT COMMENT 'Key into wiki table for \'WikiPage\' type items.',
-  `wiki_page_id` BIGINT COMMENT 'Key into wiki_pages table for \'WikiPage\' type items.'
-) COMMENT = "Table containing measures related to modules_items.";
-
-
-DROP TABLE IF EXISTS module_progression_dim;
-CREATE TABLE IF NOT EXISTS module_progression_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module progression.',
-  `canvas_id` BIGINT COMMENT 'Original primary key for module progression in the Canvas table.',
-  `module_id` BIGINT COMMENT 'Parent module for this module progression.',
-  `user_id` BIGINT COMMENT 'User being tracked in the module progression.',
-  `collapsed` ENUM('collapsed', 'not_collapsed', 'unspecified') COMMENT 'Collapsed state of the module progression.',
-  `is_current` ENUM('current', 'not_current', 'unspecified') COMMENT 'The current state of the module progression.',
-  `workflow_state` ENUM('locked', 'completed', 'unlocked', 'started') COMMENT 'The workflow state of the module progression.',
-  `current_position` INTEGER UNSIGNED COMMENT 'Represents the users current position in the module.',
-  `lock_version` INTEGER UNSIGNED COMMENT 'Lock version of the module progression.',
-  `created_at` DATETIME COMMENT 'Date/Time when the module progression was created.',
-  `completed_at` DATETIME COMMENT 'Date/Time when the module progression was completed.',
-  `evaluated_at` DATETIME COMMENT 'Date/Time when the module progression was evaluated.',
-  `updated_at` DATETIME COMMENT 'Date/Time when the module progression was last updated.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module progression.";
-
-
-
-DROP TABLE IF EXISTS module_progression_fact;
-CREATE TABLE IF NOT EXISTS module_progression_fact (
-  `module_progression_id` BIGINT COMMENT 'Unique surrogate ID for the module progression.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module belongs to.',
-  `course_id` BIGINT COMMENT 'Foreign key to the course associated with this module.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment_term associated with the module course.',
-  `module_id` BIGINT COMMENT 'Parent module for this module progression.',
-  `user_id` BIGINT COMMENT 'User being tracked in the module progression.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with the module course.'
-) COMMENT = "Table containing measures related to modules_progression.";
-
-
-
-DROP TABLE IF EXISTS module_completion_requirement_dim;
-CREATE TABLE IF NOT EXISTS module_completion_requirement_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module completion requirement.',
-  `module_id` BIGINT COMMENT 'Module that contains the completion requirement.',
-  `module_item_id` BIGINT COMMENT 'Item that is the subject of the completion requirement.',
-  `requirement_type` ENUM('must_view', 'must_mark_done', 'min_score', 'must_submit') COMMENT 'Type of completion event that must be achieved to consider item complete.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module completion.";
-
-
-
-DROP TABLE IF EXISTS module_completion_requirement_fact;
-CREATE TABLE IF NOT EXISTS module_completion_requirement_fact (
-  `module_completion_requirement_id` BIGINT COMMENT 'Unique surrogate ID for the module completion requirement.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module and the module item belong to.',
-  `assignment_id` BIGINT COMMENT 'Assignment associated with the module item.',
-  `assignment_group_id` BIGINT COMMENT 'Assignment group associated with the module item.',
-  `course_id` BIGINT COMMENT 'Foreign key to the course associated with this module and the module item.',
-  `discussion_topic_id` BIGINT COMMENT 'Discussion topic associated with the module item.',
-  `discussion_topic_editor_id` BIGINT COMMENT 'Editor of the discussion topic associated with the module item.',
-  `enrollment_rollup_id` BIGINT COMMENT 'Enrollment rollup associated with the module item.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment term associated with this module and the module item.',
-  `file_id` BIGINT COMMENT 'File associated with the module item.',
-  `module_id` BIGINT COMMENT 'Module that contains the completion requirement.',
-  `module_item_id` BIGINT COMMENT 'Item that is the subject of the completion requirement.',
-  `quiz_id` BIGINT COMMENT 'Quiz associated with the module item.',
-  `user_id` BIGINT COMMENT 'User associated with the module item.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with this module and the module item.',
-  `wiki_page_id` BIGINT COMMENT 'Wiki page associated with the module_item.',
-  `min_score` DOUBLE COMMENT 'For min_score type requirements, the score that must be attained for completion.'
-) COMMENT = "Table containing measures related to module completion requirements.";
-
-
-
-DROP TABLE IF EXISTS module_prerequisite_dim;
-CREATE TABLE IF NOT EXISTS module_prerequisite_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module prerequisite.',
-  `module_id` BIGINT COMMENT 'Module that contains the prerequisite.',
-  `prerequisite_module_id` BIGINT COMMENT 'Module that must be completed to fulfill the prerequisite.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for a module prerequisite.";
-
-
-
-DROP TABLE IF EXISTS module_prerequisite_fact;
-CREATE TABLE IF NOT EXISTS module_prerequisite_fact (
-  `module_prerequisite_id` BIGINT COMMENT 'Unique surrogate ID for the module prerequisite.',
-  `account_id` BIGINT COMMENT 'Foreign key to the account the module belongs to.',
-  `course_id` BIGINT COMMENT 'Foreign key to the course associated with this assignment.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment_term associated with the module_fact course.',
-  `module_id` BIGINT COMMENT 'Module that contains the prerequisite.',
-  `prerequisite_module_id` BIGINT COMMENT 'Module that must be completed to fulfill the prerequisite.',
-  `prerequisite_wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with the module_fact course.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki associated with the module_fact course.'
-) COMMENT = "Table containing measures related to module prerequisites.";
-
-
-
-DROP TABLE IF EXISTS module_progression_completion_requirement_dim;
-CREATE TABLE IF NOT EXISTS module_progression_completion_requirement_dim (
-  `id` BIGINT COMMENT 'Unique surrogate ID for the module progression completion requirement.',
-  `module_progression_id` BIGINT COMMENT 'Module progression referenced by completion requirement.',
-  `module_item_id` BIGINT COMMENT 'Item that the user has not completed.',
-  `requirement_type` ENUM('must_view', 'must_mark_done', 'min_score', 'must_submit') COMMENT 'Type of completion event that must be achieved to consider item complete.',
-  `completion_status` ENUM('complete', 'incomplete') COMMENT 'Denotes if the completion event is complete or not.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes tracking a requirement that remains to be completed by a user. Not a comprehensive list, typically just holds requirements that have been attempted by the user.";
-
-
-
-DROP TABLE IF EXISTS module_progression_completion_requirement_fact;
-CREATE TABLE IF NOT EXISTS module_progression_completion_requirement_fact (
-  `module_progression_completion_requirement_id` BIGINT COMMENT 'Unique surrogate ID for the module progression completion requirement.',
-  `account_id` BIGINT COMMENT 'Key to the account associated with the module progression and the module item.',
-  `assignment_id` BIGINT COMMENT 'Key to the assignment associated with the module item.',
-  `assignment_group_id` BIGINT COMMENT 'Key to the assignment group associated with the module item.',
-  `course_id` BIGINT COMMENT 'Key to the course associated with the module progression and the module item.',
-  `discussion_topic_id` BIGINT COMMENT 'Key to the discussion topic associated with the module item.',
-  `discussion_topic_editor_id` BIGINT COMMENT 'Key to the user editing the discussion topic associated with the module item.',
-  `enrollment_rollup_id` BIGINT COMMENT 'Key to the enrollment rollup associated with the module item.',
-  `enrollment_term_id` BIGINT COMMENT 'Key to the enrollment term associated with the module progression and the module item.',
-  `file_id` BIGINT COMMENT 'Key to the file associated with the module item.',
-  `module_id` BIGINT COMMENT 'Parent module for this module progression and module item.',
-  `module_item_id` BIGINT COMMENT 'Item that the user has not completed.',
-  `module_progression_id` BIGINT COMMENT 'Module progression referenced by the completion requirement.',
-  `quiz_id` BIGINT COMMENT 'Key to the quiz associated with the module item.',
-  `user_id` BIGINT COMMENT 'Key to the user associated with the module progression and the module item.',
-  `wiki_id` BIGINT COMMENT 'Key to the wiki associated with the module progression and the module item.',
-  `wiki_page_id` BIGINT COMMENT 'Key to the wiki page associated with the module item.',
-  `min_score` DOUBLE COMMENT 'For min_score type requirements, the score that must be attained for completion.',
-  `score` DOUBLE COMMENT 'For min_score type requirements, the score that the user has currently achieved.'
-) COMMENT = "Table containing measures related to module progression completion requirements.";
-
+LOCK TABLES `group_membership_fact` WRITE;
+/*!40000 ALTER TABLE `group_membership_fact` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_membership_fact` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `pseudonym_dim`
@@ -1934,6 +1743,14 @@ CREATE TABLE `quiz_submission_historical_fact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Measures for the all submitted quizzes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `quiz_submission_historical_fact`
+--
+
+LOCK TABLES `quiz_submission_historical_fact` WRITE;
+/*!40000 ALTER TABLE `quiz_submission_historical_fact` DISABLE KEYS */;
+/*!40000 ALTER TABLE `quiz_submission_historical_fact` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `requests`
@@ -1973,6 +1790,14 @@ CREATE TABLE `requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Pageview requests. Disclaimer: The data in the requests table is a ''best effort'' attempt, and is not guaranteed to be complete or wholly accurate. This data is meant to be used for rollups and analysis in the aggregate, _not_ in isolation for auditing, or other high-stakes analysis involving examining single users or small samples. As this data is generated from the Canvas logs files, not a transactional database, there are many places along the way data can be lost and/or duplicated (though uncommon). Additionally, given the size of this data, our processes are often done on monthly cycles for many parts of the requests tables, so as errors occur they can only be rectified monthly.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `requests`
+--
+
+LOCK TABLES `requests` WRITE;
+/*!40000 ALTER TABLE `requests` DISABLE KEYS */;
+/*!40000 ALTER TABLE `requests` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `role_dim`
@@ -1996,35 +1821,14 @@ CREATE TABLE `role_dim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Give the possible roles for an enrolled user';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `role_dim`
+--
 
-DROP TABLE IF EXISTS score_dim;
-CREATE TABLE IF NOT EXISTS score_dim (
-  `id` BIGINT COMMENT 'Unique surrogate identifier for the score.',
-  `canvas_id` BIGINT COMMENT 'Primary key for the score.',
-  `enrollment_id` BIGINT COMMENT 'Foreign key to the Enrollment table.',
-  `grading_period_id` BIGINT COMMENT 'Foreign key to the grading period group table.',
-  `created_at` DATETIME COMMENT 'Timestamp when record was created.',
-  `updated_at` DATETIME COMMENT 'Timestamp when record was last updated.',
-  `workflow_state` VARCHAR(256) COMMENT 'workflow state for the score. Possibe values are \'active\', \'deleted\'',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for scores. You can think of a score as synonymous with a cell inside the gradebook.";
-
-
-DROP TABLE IF EXISTS score_fact;
-CREATE TABLE IF NOT EXISTS score_fact (
-  `score_id` BIGINT COMMENT 'Unique surrogate identifier for the score.',
-  `canvas_id` BIGINT COMMENT 'Primary key for the score.',
-  `account_id` BIGINT COMMENT 'Foreign key to the Account group table.',
-  `course_id` BIGINT COMMENT 'Foreign key to the Course group table.',
-  `enrollment_id` BIGINT COMMENT 'Foreign key to the Enrollment table.',
-  `grading_period_id` BIGINT COMMENT 'Foreign key to the grading period group table.',
-  `grading_period_group_id` BIGINT COMMENT 'Foreign key to the grading period group table.',
-  `grading_period_group_account_id` BIGINT COMMENT 'One hop ID to the Account table for the grading period group table.',
-  `current_score` DOUBLE COMMENT 'Current score.',
-  `final_score` DOUBLE COMMENT 'Final score.'
-) COMMENT = "Table containing measures for scores within Canvas gradebook.";
-DROP TABLE IF EXISTS score_dim;
-
+LOCK TABLES `role_dim` WRITE;
+/*!40000 ALTER TABLE `role_dim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `role_dim` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `submission_comment_dim`
@@ -2186,6 +1990,14 @@ CREATE TABLE `submission_dim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='This table records the latest submission for an assignment.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `submission_dim`
+--
+
+LOCK TABLES `submission_dim` WRITE;
+/*!40000 ALTER TABLE `submission_dim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `submission_dim` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `submission_fact`
@@ -2216,6 +2028,14 @@ CREATE TABLE `submission_fact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `submission_fact`
+--
+
+LOCK TABLES `submission_fact` WRITE;
+/*!40000 ALTER TABLE `submission_fact` DISABLE KEYS */;
+/*!40000 ALTER TABLE `submission_fact` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `user_dim`
@@ -2245,77 +2065,14 @@ CREATE TABLE `user_dim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Attributes for users';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `user_dim`
+--
 
-DROP TABLE IF EXISTS wiki_dim;
-CREATE TABLE IF NOT EXISTS wiki_dim (
-  `id` BIGINT COMMENT 'Unique id for the wiki.',
-  `canvas_id` BIGINT COMMENT 'Primary key to the wikis table in canvas.',
-  `parent_type` VARCHAR(256) COMMENT 'Type of Parent the wiki belongs to. For example, Groups or Courses.',
-  `title` LONGTEXT COMMENT 'Title for the wiki.',
-  `created_at` DATETIME COMMENT 'Timestamp when the wiki was first saved in the system.',
-  `updated_at` DATETIME COMMENT 'Timestamp when the wiki was last updated in the system.',
-  `front_page_url` LONGTEXT COMMENT 'URL of the front page of the wiki.',
-  `has_no_front_page` ENUM('false','true') COMMENT 'True if the wiki does not have a front page or is set to NULL.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for wiki in canvas.";
-
-
-
-DROP TABLE IF EXISTS wiki_fact;
-CREATE TABLE IF NOT EXISTS wiki_fact (
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wiki dimension.',
-  `parent_course_id` BIGINT COMMENT 'Foreign key to the courses table if the wiki is associated with a Course. Otherwise this field is set to NULL.',
-  `parent_group_id` BIGINT COMMENT 'Foreign key to the groups table if the wiki is associated with a Group. Otherwise this field is set to NULL.',
-  `parent_course_account_id` BIGINT COMMENT 'Foreign key to the account dimension for the account associated with the wiki\'s course. If the wiki is not associated to a Course, this field is set to NULL.',
-  `parent_group_account_id` BIGINT COMMENT 'Foreign key to the account dimension for the account associated with the wiki\'s group. If the wiki is not associated to a Group, this field is set to NULL.',
-  `account_id` BIGINT COMMENT 'Foreign key to the accounts table that this wiki belongs to. Helpful for directly finding the account associated with the wiki, irrespective of whether it belongs to a Course or a Group.',
-  `root_account_id` BIGINT COMMENT 'Root account Id of the account the wiki belongs to. Foreign key to the accounts table.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment term table of the course this wiki is associated with. Otherwise this is set to NULL.',
-  `group_category_id` BIGINT COMMENT '(Not implemented) Foreign key to the group categories table of the group this wiki is associated with. Otherwise this is set to NULL.'
-) COMMENT = "Measures for wikis.";
-
-
-
-DROP TABLE IF EXISTS wiki_page_dim;
-CREATE TABLE IF NOT EXISTS wiki_page_dim (
-  `id` BIGINT COMMENT 'Unique id for the wiki pages.',
-  `canvas_id` BIGINT COMMENT 'Primary key for the wiki pages table.',
-  `title` VARCHAR(256) COMMENT 'Title of the wiki page.',
-  `body` LONGTEXT COMMENT 'Body of the wiki page. Redshift will only load the first 256 bytes of the body.',
-  `workflow_state` VARCHAR(256) COMMENT 'Current state the wiki is in. For Example, active, unpublished, deleted.',
-  `created_at` DATETIME COMMENT 'Timestamp when the wiki page was created in the system.',
-  `updated_at` DATETIME COMMENT 'Timestamp when the wiki page was last updated in the system.',
-  `url` LONGTEXT COMMENT 'URL for the wiki page.',
-  `protected_editing` ENUM('false','true') COMMENT 'Editing protection for the wiki page. It is false by default.',
-  `editing_roles` VARCHAR(256) COMMENT 'Users or roles who can edit a wiki page.',
-  `revised_at` DATETIME COMMENT 'Timestamp the wiki page was last revised in the system.',
-  `could_be_locked` ENUM('false','true') COMMENT 'True if the wiki page can be locked. This prevents it from being visible to others until ready.',
-UNIQUE KEY id (id)
-) COMMENT = "Attributes for wiki pages in canvas.";
-
-
-
-DROP TABLE IF EXISTS wiki_page_fact;
-CREATE TABLE IF NOT EXISTS wiki_page_fact (
-  `wiki_page_id` BIGINT COMMENT 'Foreign key to the wiki pages dimension.',
-  `wiki_id` BIGINT COMMENT 'Foreign key to the wikis dimension.',
-  `parent_course_id` BIGINT COMMENT 'Foreign key to the courses table if the wiki that owns the wiki page is associated with a Course. Otherwise this field is set to NULL.',
-  `parent_group_id` BIGINT COMMENT 'Foreign key to the groups table if the wiki that owns the wiki page is associated with a Group. Otherwise this field is set to NULL.',
-  `parent_course_account_id` BIGINT COMMENT 'Foreign key to the account dimension for the account associated with the wiki page\'s course. If the wiki page is not associated to a Course, this field is set to NULL.',
-  `parent_group_account_id` BIGINT COMMENT 'Foreign key to the account dimension for the account associated with the wiki page\'s group. If the wiki page is not associated to a Group, this field is set to NULL.',
-  `user_id` BIGINT COMMENT 'Foreign key to the user table.',
-  `account_id` BIGINT COMMENT 'Foreign key to the accounts table that this wiki page belongs to. Helpful for directly finding the account associated with the wiki page, irrespective of whether it belongs to a Course or a Group.',
-  `root_account_id` BIGINT COMMENT 'Root account Id of the account the wiki belongs to. Foreign key to the accounts table.',
-  `enrollment_term_id` BIGINT COMMENT 'Foreign key to the enrollment term table of the course this wiki page is associated with. Otherwise this is set to NULL.',
-  `group_category_id` BIGINT COMMENT '(Not implemented) Foreign key to the group categories table of the group this wiki page is associated with. Otherwise this is set to NULL.',
-  `wiki_page_comments_count` INTEGER UNSIGNED COMMENT '(Deprecated) No longer used in Canvas.',
-  `view_count` INTEGER UNSIGNED COMMENT 'Number of views per wiki page.'
-) COMMENT = "Measures for wiki pages.";
-
-
-
-
-
+LOCK TABLES `user_dim` WRITE;
+/*!40000 ALTER TABLE `user_dim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_dim` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
