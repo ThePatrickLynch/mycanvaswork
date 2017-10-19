@@ -41,28 +41,34 @@ writetoMySQL <- function(inFile) {
 }
 
 writetough <- function(inFile) {
-  # reads big files in bits and appends them to MySql table
-  rec.skip <- 0
-  rec.chunksize <- 10000
 
+  # read in whole file
+  
   tblName <- substr(inFile, 1, nchar(inFile)-4) # lose the txt
   this.File <- paste('d:/canvas/unpackedFiles/csv/', tblName, ".csv", sep="") 
   print(this.File)
   
+  this.Table <- read.csv(this.File, header = T) 
+  row.count <- nrow(this.Table)
+  print(row.count)
+   
   # whilst testing clear table first
   qry <- paste('DELETE FROM', tblName)
   rslt <- dbGetQuery(con, qry)
+  
+  this.chunk <- this.Table[1:100000,]
 
-  for (pass in 1:5) {
+  dbWriteTable(con, tblName, this.chunk , append= TRUE, row.names = F)
+  
+  #rec.skip <- 0
+  #rec.chunksize <- 10000
+  #for (pass in 1:5) {
     # loop through the chunks until EOF
     # check eof ?  
-    
-    this.Table <- read.table(this.File,sep=',', na.strings="NA", quote='"', fill=TRUE, skip=rec.skip, nrows=rec.chunksize, header = T) 
     #dbWriteTable(con, tblName, this.Table, append= TRUE, row.names = F)
-    print(rec.skip)
-    #print(rec.chunksize)
-    rec.skip <- rec.skip + rec.chunksize 
-  }
+    #print(rec.skip)
+    #rec.skip <- rec.skip + rec.chunksize 
+  #}
   
   # print a completed date time -this could be written to a table  
   fsize <- humanReadable(file.info(this.File)$size)
@@ -77,49 +83,39 @@ writetough <- function(inFile) {
 # Main bit
 ######################################
 
-
 # list of files which won't just upload as too big
 excl = c(  
-        "file_dim.txt" ,
-         "submission_comment_dim.txt",
+        "file_dim.txt",
+        "submission_comment_dim.txt",
         "conversation_message_dim.txt", 
         "module_item_fact.txt"
 )
 
-
+# write easier ones direct to MySQL database using function
 # removes the big stuff
 allFiles <- allFiles [! allFiles %in% excl]
-
-#write easier ones direct to MySQL database using function
 rsl <- lapply(allFiles, writetoMySQL)
 
 # now deal with the big files
-print('######################################')
-print('           Complicated ones')
-print('######################################')
-
-
-# need to just drop score_fact as no table yet
-excl = c(
+awkward = c(
          "file_dim.txt" ,
-         "module_item_fact.txt"
+         "module_item_fact.txt",
+         "conversation_message_dim.txt" ,
+         "submission_comment_dim.txt"
 )
 
 
-# "conversation_message_dim.txt" ,
-# "submission_comment_dim.txt",
 
 
-rsl <- lapply(excl, writetough)
+rslt <- writetough('file_dim.txt')
 
-
+#rsl <- lapply(awkward, writetough)
 
 # hardest
 excl = c(
   "conversation_message_dim.txt" ,
   "submission_comment_dim.txt"
 )
-
 
 
 #===========================================
