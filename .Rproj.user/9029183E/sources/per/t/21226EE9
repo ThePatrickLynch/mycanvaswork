@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1514968643451.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3624747036",
+    "id" : "21226EE9",
+    "lastKnownWriteTime" : 1508426315,
+    "last_content_update" : 1508426315,
+    "path" : "D:/Data/github/mycanvaswork/mysqlloadcsv.R",
+    "project_path" : "mysqlloadcsv.R",
+    "properties" : {
+        "cursorPosition" : "11,25",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

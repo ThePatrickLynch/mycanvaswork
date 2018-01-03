@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1514968528623.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2292219589",
+    "id" : "C860FABA",
+    "lastKnownWriteTime" : 1506958834,
+    "last_content_update" : 1506958834,
+    "path" : "D:/Data/github/mycanvaswork/makecsv.R",
+    "project_path" : "makecsv.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
